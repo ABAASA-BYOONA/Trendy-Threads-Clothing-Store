@@ -151,6 +151,17 @@ if (themeToggle) {
     });
 }
 
+// Burger menu toggle
+const burger = document.querySelector('.burger');
+const mobileMenu = document.querySelector('.mobile-menu');
+if (burger && mobileMenu) {
+    burger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        burger.classList.toggle('active');
+    });
+}
+
+
 // Update cart and theme on page load
 document.addEventListener('DOMContentLoaded', () => {
     try {
