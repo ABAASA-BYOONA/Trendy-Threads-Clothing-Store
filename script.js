@@ -3,7 +3,37 @@
     setTimeout(() => {
       document.getElementById('loading').style.display = 'none';
     }, 2000);
+// Get the card element
+    const card = document.querySelector('.card');
 
+    // Add tap/click event listener to the card
+    card.addEventListener('click', (event) => {
+      // Prevent triggering when clicking the "Add to Cart" button
+      if (event.target.classList.contains('add-to-cart')) return;
+
+      // Get the image source from the card
+      const imgSrc = card.querySelector('img').src;
+
+      // Create a fullscreen image container
+      const fullscreenDiv = document.createElement('div');
+      fullscreenDiv.classList.add('fullscreen-image');
+
+      // Create the image element
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.alt = 'Fullscreen Image';
+
+      // Append image to the fullscreen container
+      fullscreenDiv.appendChild(img);
+
+      // Append the fullscreen container to the body
+      document.body.appendChild(fullscreenDiv);
+
+      // Add tap/click event listener to the image to remove it
+      img.addEventListener('click', () => {
+        fullscreenDiv.remove();
+      });
+    });
     // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
     themeToggle.addEventListener('click', () => {
