@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trendy Threads Clothing Store</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #020103 100%, #667eea 0%);
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 1rem;
+    }
+
+    .contact-container {
+      background: #fff;
+      color: #333;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      padding: 2.5rem 3rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #764ba2;
+    }
+
+    p.intro {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      padding: 0.75rem 1rem;
+      border: 1.8px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    textarea:focus {
+      border-color: #667eea;
+      outline: none;
+      box-shadow: 0 0 8px #667eeaaa;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.85rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px #764baaaa;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #553d9a;
+      box-shadow: 0 6px 16px #553d9aaa;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1.5rem;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .contact-info div {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .contact-info i {
+      color: #764ba2;
+      font-size: 1.3rem;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .contact-container {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="spinner"></div>
+    <h2>Loading Trendy Threads...</h2>
+  </div>
+
+  <div class="contact-container" role="main">
+        <h1>Trendy Threads Clothing Store</h1>
+    <h1>Contact Us</h1>
+    <p class="intro">
+      Here for you! Please fill out the form below or reach us through the contact details.
+    </p>
+    <form id="contact-form" onsubmit="return handleContactSubmit(event)" novalidate>
+      <label for="name">Full Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Your full name"
+        required
+        autocomplete="name"
+      />
+
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="you@example.com"
+        required
+        autocomplete="email"
+      />
+
+      <label for="phone">Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="+256 7XXXXXXXX"
+        pattern="^\+2567\d{8}$"
+        autocomplete="tel"
+      />
+
+      <label for="message">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="Write your message here..."
+        required
+      ></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-info" aria-label="Contact Information">
+      <div><i class="fas fa-map-marker-alt"></i> Makerere, Kampala, Uganda</div>
+      <div><i class="fas fa-phone"></i> +256 744 580100</div>
+      <div><i class="fas fa-envelope"></i> elitesgroup256@gmail.com</div>
+      <div><i class="fas fa-clock"></i> Mon - sun</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your Public Key
+    (function(){
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+    })();
+
+    function handleContactSubmit(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name) {
+        alert('Please enter your full name.');
+        form.name.focus();
+        return false;
+      }
+
+      if (!email) {
+        alert('Please enter your email address.');
+        form.email.focus();
+        return false;
+      }
+
+      if (phone && !/^\+2567\d{8}$/.test(phone)) {
+        alert('Please enter a valid Ugandan phone number starting with +2567.');
+        form.phone.focus();
+        return false;
+      }
+
+      if (!message) {
+        alert('Please enter your message.');
+        form.message.focus();
+        return false;
+      }
+
+      // Send email using EmailJS
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        from_name: name,
+        from_email: email,
+        phone: phone || "Not provided",
+        message: message
+      })
+      .then(function(response) {
+        alert('Thank you for contacting us! Your message has been sent.');
+        form.reset();
+      }, function(error) {
+        alert('Failed to send the message. Please try again later.');
+        console.error('EmailJS error:', error);
+      });
+
+      return true;
+    }
+  </script>
+  <script >
+    // Hide loading screen after 2 seconds
+    setTimeout(() => {
+      document.getElementById('loading').style.display = 'none';
+    }, 2000);
+  </script>
+  <script src="cart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
