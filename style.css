@@ -17,7 +17,51 @@
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Card styles (adjust as needed) */
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
+    .hover-scale {
+      transition: transform 0.3s;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
+    /* Fullscreen image styles */
+    .fullscreen-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .fullscreen-image img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
 /* Responsive Adjustment */
 @media (max-width: 768px) {
   .header {
