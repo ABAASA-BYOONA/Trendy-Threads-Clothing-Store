@@ -3,6 +3,22 @@
     setTimeout(() => {
       document.getElementById('loading').style.display = 'none';
     }, 2000);
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', (event) => {
+    if (event.target.classList.contains('add-to-cart')) return;
+    const imgSrc = card.querySelector('img').src;
+    const fullscreenDiv = document.createElement('div');
+    fullscreenDiv.classList.add('fullscreen-image');
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.alt = 'Fullscreen Image';
+    fullscreenDiv.appendChild(img);
+    document.body.appendChild(fullscreenDiv);
+    img.addEventListener('click', () => {
+      fullscreenDiv.remove();
+    });
+  });
+});
 // Get the card element
     const card = document.querySelector('.card');
 
