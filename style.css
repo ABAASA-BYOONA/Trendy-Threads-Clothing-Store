@@ -189,6 +189,7 @@ nav {
     border: none;
     cursor: pointer;
     z-index: 1001;
+  color: white;
 }
 
 .burger div {
