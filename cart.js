@@ -151,13 +151,19 @@ if (themeToggle) {
     });
 }
 
-// Burger menu toggle
-const burger = document.querySelector('.burger');
-const mobileMenu = document.querySelector('.mobile-menu');
 if (burger && mobileMenu) {
     burger.addEventListener('click', () => {
+        const isExpanded = burger.getAttribute('aria-expanded') === 'true';
         mobileMenu.classList.toggle('hidden');
         burger.classList.toggle('active');
+        burger.setAttribute('aria-expanded', !isExpanded);
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            burger.classList.remove('active');
+            burger.setAttribute('aria-expanded', 'false');
+        });
     });
 }
 
